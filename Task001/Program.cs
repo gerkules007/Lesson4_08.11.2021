@@ -3,16 +3,24 @@
 // затем максимальную из разностей элементов таких пар. В данной задаче под парой подразумевается два различных элемента 
 // последовательности. Порядок элементов в паре не важен.
 
-string[] input = System.IO.File.ReadAllLines(@"C:\Users\ovcse\Desktop\РАЗРАБОТЧИК\СЕМИНАРЫ\in CS\Lesson4\17.txt");
-// double[] arr = File.ReadAllLines(@"C:\Users\ovcse\Desktop\РАЗРАБОТЧИК\СЕМИНАРЫ\in CS\Lesson4\17.txt").Select(i => double.Parse(i.Trim(),NumberFormatInfo.InvariantInfo )).ToArray();
+int[] ImportStringArrayToInt(string place)
+{
+    // Console.WriteLine("Укажите место импорта данных:");
+    // string place = Console.ReadLine()!;
+    // double[] arr = File.ReadAllLines(@"C:\Users\ovcse\Desktop\РАЗРАБОТЧИК\СЕМИНАРЫ\in CS\Lesson4\17.txt").Select(i => double.Parse(i.Trim(),NumberFormatInfo.InvariantInfo )).ToArray();
+    string[] input = System.IO.File.ReadAllLines(place);
+    int[] newarray = Array.ConvertAll(input, Int32.Parse);
+    return newarray;
+}
 
-int CountNumbers(int[] array1)
+int[] CountNumbers(int[] array1)
 {
     int i = 0;
     int count = 0;
     int a = array1[i];
     int b = array1[i + 1];
-    for (i = 0; i < array1.Length; i++)
+    int max = 0;
+    for (i = 0; i < array1.Length - 1; i++)
     {
         a = array1[i];
         for (int j = i + 1; j < array1.Length; j++)
@@ -20,12 +28,18 @@ int CountNumbers(int[] array1)
             if ((a - array1[j]) % 60 == 0)
             {
                 count++;
+                if ((a - array1[j]) > max)
+                {
+                    max = a - array1[j];
+                }
             }
         }
     }
-    return count;
+    int[] arr = {count, max};
+    return (arr);
 }
 
-int[] newarray = Array.ConvertAll(input, Int32.Parse);
-int result = CountNumbers(newarray);
-Console.WriteLine(result);
+string directory = @"C:\Users\ovcse\Desktop\РАЗРАБОТЧИК\СЕМИНАРЫ\in CS\Lesson4\17.txt";
+int[] newarray = ImportStringArrayToInt(directory);
+int[] result = CountNumbers(newarray);
+Console.WriteLine($"Разность элементов кратна 60 = {result[0]} и максимальную из разностей элементов таких пар = {result[1]}");
