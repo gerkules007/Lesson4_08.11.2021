@@ -4,49 +4,6 @@
     return output;
 }
 
-int CountMethod(string inputChar)
-{
-    int resCM;
-    string compareChar = inputChar;
-    switch (compareChar.ToUpper())
-    {
-        case "A":
-            resCM = 2;
-            break;
-        case "B":
-            resCM = 3;
-            break;
-        case "C":
-            resCM = 5;
-            break;
-        default:
-            resCM = 0;
-            break;
-    }
-    return resCM;
-}
-
-string OverCountMethod(int kindofChar)
-{
-    string outputChar = string.Empty;
-    switch (kindofChar)
-    {
-        case 2:
-            outputChar = "A";
-            break;
-        case 3:
-            outputChar = "B";
-            break;
-        case 5:
-            outputChar = "C";
-            break;
-        default:
-            Console.WriteLine("Error");
-            break;
-    }
-    return outputChar;
-}
-
 (int max, int numberofChar) MaxCountCharFromCount(int chrCount, int[] rule)
 {
     int numberofChar = 0;
