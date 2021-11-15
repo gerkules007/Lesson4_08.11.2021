@@ -5,73 +5,100 @@
 // способом множество разностей будет содержать не меньше трёх элементов, не превышающих 100. В ответе 
 // перечислите найденные числа в порядке возрастания.
 
-int[] CreateIntArray(int minValue, int maxValue)
-{
-    int[] tempArr = new int[maxValue - minValue + 1];
-    for (int i = 0; i < tempArr.Length; i++) tempArr[i] = minValue++;
-    return tempArr;
-}
+// int[] CreateIntArray(int minValue, int maxValue)
+// {
+//     int[] tempArr = new int[maxValue - minValue + 1];
+//     for (int i = 0; i < tempArr.Length; i++) tempArr[i] = minValue++;
+//     return tempArr;
+// }
 
-int[] TakeRatioFor(int compareNumber)
+// int[] TakeRatioFor(int compareNumber)
+// {
+//     int count = 1;
+//     int[] plusArr = new int[count];
+//     int num = 1;
+//     for (int i = 0; i < compareNumber; i++, num++)
+//     {
+//         if (compareNumber % (num) == 0)
+//         {
+//             Array.Resize(ref plusArr, count);
+//             plusArr[count - 1] = num;
+//             count++;
+//         }
+//     }
+//     int max = plusArr.Length;
+//     int[] diffArr = new int[max];
+//     int index = 0;
+//     for (int maxElement = plusArr[max - 1], needArgument; index < max; index++)
+//     {
+//         needArgument = maxElement / plusArr[index];
+//         diffArr[index] = needArgument - plusArr[index];
+//         if (diffArr[index] < 0) break;
+//     }
+//     Array.Resize(ref diffArr, index);
+//     return diffArr;
+// }
+
+// int[] CompareArr(int[] inputArr2)
+// {
+//     Array.Reverse(inputArr2);
+//     int lengthArr = inputArr2.Length / 4;
+//     int[] takeArr = new int[lengthArr];
+//     int ni = 0;
+//     int count2 = 0;
+//     for (; ni < lengthArr; ni++)
+//     {
+//         if (inputArr2[ni] < 100)
+//         {
+//             takeArr[ni] = inputArr2[ni];
+//             count2++;
+//         }
+//     }
+//     Array.Resize(ref takeArr, count2);
+//     return takeArr;
+// }
+
+// void PrintArray(int[] inputArr)
+// {
+//     foreach (int input in inputArr) Console.Write($"{input} ");
+// }
+
+// int firstnumb = 1000000;
+// int secondnumb = 2000000;
+// // int secondnumb = 1001000;
+// int[] newArr1 = CreateIntArray(firstnumb, secondnumb);
+// for (int n = 0; n < newArr1.Length; n++)
+// {
+//     int[] x1 = CompareArr(TakeRatioFor(newArr1[n]));
+//     if (x1.Length > 2 && x1[2] != 0 && x1[1] != 0) { Console.Write($"{newArr1[n]} "); PrintArray(x1); Console.WriteLine(); }
+// }
+
+void FindNumber(int fN, int sN)
 {
-    int count = 1;
-    int[] plusArr = new int[count];
-    int num = 1;
-    for (int i = 0; i < compareNumber; i++, num++)
+    double sqrtN = 0;
+    int count = 0;
+    for (int i = fN; i < sN + 1; i++)
     {
-        if (compareNumber % (num) == 0)
+        sqrtN = Math.Sqrt(i);
+        for (int j = 1; j < sqrtN; j++)
         {
-            Array.Resize(ref plusArr, count);
-            plusArr[count - 1] = num;
-            count++;
+            if (i % j == 0)
+            {
+                if ((i / j) - j <= 100) count++;
+            }
         }
+        if (count > 2) Console.WriteLine(i);
+        count = 0;
     }
-    int max = plusArr.Length;
-    int[] diffArr = new int[max];
-    int index = 0;
-    for (int maxElement = plusArr[max - 1], needArgument; index < max; index++)
-    {
-        needArgument = maxElement / plusArr[index];
-        diffArr[index] = needArgument - plusArr[index];
-        if (diffArr[index] < 0) break;
-    }
-    Array.Resize(ref diffArr, index);
-    return diffArr;
-}
-
-int[] CompareArr(int[] inputArr2)
-{
-    Array.Reverse(inputArr2);
-    int lengthArr = inputArr2.Length/4;
-    int[] takeArr = new int[lengthArr];
-    int ni = 0;
-    int count2 = 0;
-    for (; ni < lengthArr; ni++)
-    {
-        if (inputArr2[ni] < 100) 
-        {
-            takeArr[ni] = inputArr2[ni];
-            count2++;
-        }
-    }
-    Array.Resize(ref takeArr, count2);
-    return takeArr;
-}
-
-void PrintArray(int[] inputArr)
-{
-    foreach (int input in inputArr) Console.Write($"{input} ");
 }
 
 int firstnumb = 1000000;
 int secondnumb = 2000000;
-// int secondnumb = 1001000;
-int[] newArr1 = CreateIntArray(firstnumb, secondnumb);
-for (int n = 0; n < newArr1.Length; n++)
-{
-    int[] x1 = CompareArr(TakeRatioFor(newArr1[n]));
-    if (x1.Length > 2 && x1[2] != 0 && x1[1] != 0) {Console.Write($"{newArr1[n]} "); PrintArray(x1); Console.WriteLine();}
-}
+FindNumber(firstnumb, secondnumb);
+
+
+
+
 /*
 int firstnumb = 1000000;
 int secondnumb = 2000000;
